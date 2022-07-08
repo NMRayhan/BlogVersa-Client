@@ -1,6 +1,10 @@
 import React from 'react';
+import auth from '../../firebase.init';
+import {useAuthState} from 'react-firebase-hooks/auth'
 
 const Navbar = () => {
+    const [user, loading, error] = useAuthState(auth);
+    console.log(user);
     return (
         <div>
             <div>
@@ -30,7 +34,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div class="divider"></div> 
+            <div className="divider"></div> 
         </div>
     );
 };
