@@ -3,7 +3,7 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
-import Spiner from '../../common/Spiner/Spiner';
+import Spinner from '../../common/Spinner/Spinner';
 import SocialAuth from '../SocialAuth/SocialAuth';
 
 const Login = () => {
@@ -12,19 +12,13 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-    ] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
 
     const handleSubmitLoginInfo = (event) => {
         event.preventDefault()
         const email = event.target.email.value
         const password = event.target.password.value
         signInWithEmailAndPassword(email, password)
-        console.log(email, password);
         event.target.reset();
     }
 
@@ -33,7 +27,7 @@ const Login = () => {
       }
 
     if (loading) {
-        return <Spiner />
+        return <Spinner/>
     }
 
     if (error) {

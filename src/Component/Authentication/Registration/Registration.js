@@ -3,8 +3,8 @@ import SocialAuth from '../SocialAuth/SocialAuth';
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-import Spiner from '../../common/Spiner/Spiner';
 import { toast } from 'react-toastify';
+import Spinner from '../../common/Spinner/Spinner';
 
 const Registration = () => {
     const [displayName, setDisplayName] = useState(' ')
@@ -14,17 +14,11 @@ const Registration = () => {
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error1,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading, error1] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating, error2] = useUpdateProfile(auth);
 
     const handleUserRegistration = async (event) => {
         event.preventDefault();
-        console.log(displayName, email, password);
         await updateProfile({ displayName })
         createUserWithEmailAndPassword(email, password)
     }
@@ -34,11 +28,11 @@ const Registration = () => {
 
     if (error1 || error2) {
         const error = error1 || error2
-        toast.warning(error.message)
+        toast.error(error.message)
     }
 
     if (loading || updating) {
-        return <Spiner />
+        return <Spinner/>
     }
 
     return (

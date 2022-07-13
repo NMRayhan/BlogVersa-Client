@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import Spinner from './Spiner/Spiner';
+import Spinner from './Spinner/Spinner';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 

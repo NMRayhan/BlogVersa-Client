@@ -3,13 +3,22 @@ import auth from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { Link } from "react-router-dom";
 import { signOut } from 'firebase/auth';
+import Spinner from './Spinner/Spinner';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
     const [user, loading, error] = useAuthState(auth);
-    
+
     const logout = () => {
         signOut(auth);
     };
+
+    if (loading) {
+        return <Spinner />
+    }
+    if (error) {
+        toast.error(error.message)
+    }
     return (
         <div>
             <div>
@@ -34,7 +43,7 @@ const Navbar = () => {
                                             {user?.displayName}
                                         </a>
                                     </li>
-                                    <li><a>Manage Post</a></li>
+                                    <li ><Link to="/dashboard">Manage User Control</Link></li>
                                     <li onClick={() => logout()}><a>Logout</a></li>
                                 </ul>
                             </div>
