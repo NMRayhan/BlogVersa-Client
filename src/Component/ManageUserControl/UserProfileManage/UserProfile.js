@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
-import auth from '../../firebase.init';
-import Spinner from '../common/Spinner/Spinner';
+import auth from '../../../firebase.init';
+import Spinner from '../../common/Spinner/Spinner';
 
 const UserProfile = () => {
     const [user, loading, error] = useAuthState(auth)
@@ -82,7 +82,6 @@ const UserProfile = () => {
                         </div>
                         <div className="form-control mt-5">
                             <label className="label">Profile Picture</label>
-
                             <input
                                 name="img"
                                 type="file"

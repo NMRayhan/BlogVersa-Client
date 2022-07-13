@@ -7,13 +7,13 @@ const ManageUserControl = () => {
     const [user, loading] = useAuthState(auth)
     const dashboardNavItem = (
         <React.Fragment>
-            <li>
+            <li className='mb-2'>
                 <Link to="/dashboard">My Profile</Link>
             </li>
-            <li>
+            <li className='mb-2'>
                 <Link to="/dashboard/Manage-blogs">Blogs</Link>
             </li>
-            <li>
+            <li className='mb-2'>
                 <Link to="/dashboard/Manage-comment">Comment</Link>
             </li>
         </React.Fragment>

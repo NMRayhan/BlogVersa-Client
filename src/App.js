@@ -7,10 +7,12 @@ import RequireAuth from './Component/Authentication/RequireAuth/RequireAuth';
 import Footer from './Component/common/Footer';
 import Navbar from './Component/common/Navbar';
 import Home from './Component/Home';
-import ManageBlogs from './Component/ManageUserControl/ManageBlogs';
-import ManageComment from './Component/ManageUserControl/ManageComment';
 import ManageUserControl from './Component/ManageUserControl/ManageUserControl';
-import UserProfile from './Component/ManageUserControl/UserProfile';
+
+import PostBlog from './Component/PostBlog';
+import UserProfile from './Component/ManageUserControl/UserProfileManage/UserProfile';
+import ManageBlogs from './Component/ManageUserControl/BlogManage/ManageBlogs';
+import ManageComment from './Component/ManageUserControl/CommentManage/ManageComment';
 
 function App() {
   return (
@@ -21,6 +23,12 @@ function App() {
           <Route path='/' element={<Home />}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/registration' element={<Registration />}></Route>
+
+          <Route path="addPost" element={
+            <RequireAuth>
+              <PostBlog />
+            </RequireAuth>
+          }></Route>
 
           <Route path='/dashboard' element={
             <RequireAuth>

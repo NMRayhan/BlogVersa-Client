@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DeleteConfirm from '../DeleteConfirm';
 
 const ManageBlogs = () => {
+    const [productDetails, setProductDetails] = useState(null);
     return (
         <div className="min-h-screen">
             <h1>Manage User Blogs</h1>
@@ -22,12 +24,24 @@ const ManageBlogs = () => {
                             <td>Quality Control Specialist</td>
                             <td>Blue</td>
                             <td>
-                                <button className='btn btn-sm btn-outline btn-error mx-1'>Delete</button>
+                                <label
+                                    htmlFor="delete-confirm-modal"
+                                    onClick={() => setProductDetails(details)}
+                                    className='btn btn-sm btn-outline btn-error mx-1'
+                                >
+                                    Delete
+                                </label>
                                 <button className='btn btn-sm btn-outline btn-success'>Update</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                {productDetails && (
+                    <DeleteConfirm
+                        details={productDetails}
+                        key={productDetails._id}
+                        setProductDetails={setProductDetails} />
+                )}
             </div>
         </div>
     );
