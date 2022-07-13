@@ -1,12 +1,13 @@
-import React from 'react';
-import './Spiner.css'
+import React from "react";
 
-const Spiner = () => {
-    return (
-        <div className="spinner-container">
-            <div className="loading-spinner"></div>
-        </div>
-    );
+const Spinner = () => {
+  return (
+    <div className="min-h-screen">
+      <div className="flex items-center justify-center ">
+        <div className="w-16 h-16 border-b-2 border-primary rounded-full animate-spin"></div>
+      </div>
+    </div>
+  );
 };
 
-export default Spiner;
+export default Spinner;

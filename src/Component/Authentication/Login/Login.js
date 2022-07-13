@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { toast } from 'react-toastify';
 import auth from '../../../firebase.init';
 import Spiner from '../../common/Spiner/Spiner';
 import SocialAuth from '../SocialAuth/SocialAuth';
 
 const Login = () => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-
-    console.log(user);
 
     const handleSubmitLoginInfo = (event) => {
         event.preventDefault()
@@ -24,6 +27,10 @@ const Login = () => {
         console.log(email, password);
         event.target.reset();
     }
+
+    if (user) {
+        navigate(from, { replace: true });
+      }
 
     if (loading) {
         return <Spiner />

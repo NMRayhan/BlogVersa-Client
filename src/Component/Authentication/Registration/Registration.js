@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import SocialAuth from '../SocialAuth/SocialAuth';
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import Spiner from '../../common/Spiner/Spiner';
@@ -10,6 +10,10 @@ const Registration = () => {
     const [displayName, setDisplayName] = useState(' ')
     const [email, setEmail] = useState(' ')
     const [password, setPassword] = useState(' ')
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+
     const [
         createUserWithEmailAndPassword,
         user,
@@ -24,7 +28,9 @@ const Registration = () => {
         await updateProfile({ displayName })
         createUserWithEmailAndPassword(email, password)
     }
-    console.log(user);
+    if (user) {
+        navigate(from, { replace: true });
+    }
 
     if (error1 || error2) {
         const error = error1 || error2
