@@ -23,7 +23,7 @@ const Blog = (props) => {
     return (
         <article className="card lg:card-side w-full bg-base-100 shadow-2xl my-5">
             <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-center items-center'>
-                <figure><img src={img} alt={title} /></figure>
+                <figure><img src={img} alt={title} className="w-full" /></figure>
                 <div className="card-body">
                     <div>
                         <div className='flex flex-row'>
