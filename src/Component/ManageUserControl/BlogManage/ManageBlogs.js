@@ -1,16 +1,44 @@
-import React, { useState } from 'react';
-import DeleteConfirm from '../DeleteConfirm';
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
+import auth from '../../../firebase.init';
+import Spinner from '../../common/Spinner/Spinner';
+import BlogRow from './BlogRow';
+import { useQuery } from 'react-query';
+import DeleteConfirm from './DeleteConfirm';
+import UpdateBlog from './UpdateBlog';
 
 const ManageBlogs = () => {
     const [productDetails, setProductDetails] = useState(null);
+    const [user, loading, error] = useAuthState(auth);
+
+    const {
+        isLoading,
+        error2,
+        data
+    } = useQuery('repoData', () =>
+        fetch(`http://localhost:5000/userBlogs/${user?.email}`, {
+            method: "GET"
+        }).then(res =>
+            res.json()
+        ))
+
+    if (loading || isLoading) {
+        return <Spinner />
+    }
+
+    if (error || error2) {
+        toast.error(error.message || error2.message)
+    }
+
     return (
         <div className="min-h-screen">
-            <h1>Manage User Blogs</h1>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <h2 className="text-primary text-2xl my-2">Your Total Blog : {data.length}</h2>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>#</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Blog Type</th>
@@ -18,29 +46,29 @@ const ManageBlogs = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover">
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                            <td>
-                                <label
-                                    htmlFor="delete-confirm-modal"
-                                    onClick={() => setProductDetails(details)}
-                                    className='btn btn-sm btn-outline btn-error mx-1'
-                                >
-                                    Delete
-                                </label>
-                                <button className='btn btn-sm btn-outline btn-success'>Update</button>
-                            </td>
-                        </tr>
+                        {
+                            data.map((blog, index) => <BlogRow
+                                key={blog._id}
+                                index={index}
+                                blogDetails={blog}
+                                setProductDetails={setProductDetails}
+                            />)
+                        }
                     </tbody>
                 </table>
                 {productDetails && (
                     <DeleteConfirm
-                        details={productDetails}
+                        blogDetails={productDetails}
                         key={productDetails._id}
-                        setProductDetails={setProductDetails} />
+                        setProductDetails={setProductDetails}
+                    />
+                )}
+                {productDetails && (
+                    <UpdateBlog
+                        blogDetails={productDetails}
+                        key={productDetails._id}
+                        setProductDetails={setProductDetails}
+                    />
                 )}
             </div>
         </div>

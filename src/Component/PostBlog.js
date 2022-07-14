@@ -1,9 +1,17 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 const PostBlog = () => {
-    const navigate = useNavigate()
+
+    const [categorys, setCategory] = useState([])
+    useEffect(() => {
+        fetch(`http://localhost:5000/category`, {
+            method: "GET"
+        })
+            .then(res => res.json())
+            .then(data => setCategory(data))
+    }, [])
+
     const handleNewBlogPost = (e) => {
         e.preventDefault()
         const title = e.target.title.value;
@@ -28,9 +36,9 @@ const PostBlog = () => {
                         <div className='form-control mt-4'>
                             <select name="category" class="select select-info w-full max-w-3xl focus:outline-none">
                                 <option disabled selected>Select Category</option>
-                                <option value="Sports">Sports</option>
-                                <option value="Economics">Economics</option>
-                                <option value="Business">Business</option>
+                                {
+                                    categorys.map((category, index) => <option index={index} value={category.name}>{category.name}</option>)
+                                }
                             </select>
                         </div>
                         <div className='form-control mt-4'>

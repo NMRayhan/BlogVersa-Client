@@ -21,8 +21,8 @@ const ManageUserControl = () => {
 
     return (
         <div className="min-h-screen">
-            <div class="drawer drawer-mobile">
-                <input id="dashboard-drawer" type="checkbox" class="drawer-toggle" />
+            <div className="drawer drawer-mobile">
+                <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <div className="flex flex-row justify-between items-center">
                         <span className="text-accent my-4 font-semibold text-xl">
@@ -40,9 +40,9 @@ const ManageUserControl = () => {
                     </div>
                     <Outlet />
                 </div>
-                <div class="drawer-side">
-                    <label for="dashboard-drawer" class="drawer-overlay"></label>
-                    <ul class="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
+                <div className="drawer-side">
+                    <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+                    <ul className="menu p-4 overflow-y-auto w-48 bg-base-100 text-base-content">
                         {dashboardNavItem}
                     </ul>
                 </div>

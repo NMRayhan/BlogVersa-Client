@@ -41,7 +41,7 @@ const Blog = (props) => {
                 <form onSubmit={handleSubmitComment}>
                     <div className='flex flex-row justify-center items-center'>
                         <input type="text" placeholder="Comment here" name="comment" className="input focus:outline-0 w-full max-w-full" />
-                        <input type='submit' value="submit" className='btn btn-accent mr-5'/>
+                        <input type='submit' value="submit" className='btn btn-sm btn-outline btn-success mr-5'/>
                     </div>
                 </form>
             </div>

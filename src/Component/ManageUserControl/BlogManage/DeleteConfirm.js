@@ -1,9 +1,19 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
-const DeleteConfirm = () => {
+const DeleteConfirm = ({ blogDetails, setProductDetails }) => {
+    const { _id, title, details, category } = blogDetails;
     const handleDelete = () => {
-        console.log("Confirm Delete Clicked");
-    }
+        fetch(`http://localhost:5000/deleteBlog/${_id}`, {
+            method: "DELETE",
+        })
+            .then((response) => response.json())
+            .then((result) => {
+                setProductDetails(null)
+                toast.success("Your Product Delete Successfully done!");
+                console.log(result);
+            });
+    };
     return (
         <div>
             <input type="checkbox" id="delete-confirm-modal" className="modal-toggle" />
