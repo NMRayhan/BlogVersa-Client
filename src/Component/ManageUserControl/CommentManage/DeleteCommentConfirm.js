@@ -9,8 +9,7 @@ const DeleteCommentConfirm = ({ commentDetails, refetch, setCommentDetails }) =>
             method: "DELETE"
         })
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then(result => {
                 refetch()
                 setCommentDetails(null)
             })

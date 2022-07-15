@@ -1,15 +1,14 @@
 import React from 'react';
-import { toast } from 'react-toastify';
 
 const DeleteConfirm = ({ blogDetails, setProductDetails, refetch }) => {
-    const { _id, title, details, category } = blogDetails;
+    const { _id} = blogDetails;
     const handleDelete = () => {
-        fetch(`http://localhost:5000/deleteBlog/${_id}`, {
+        const url = `http://localhost:5000/deleteBlog/${_id}`
+        fetch(url, {
             method: "DELETE",
         })
             .then((response) => response.json())
             .then((result) => {
-                toast.success("Your Product Delete Successfully done!");
                 refetch()
                 setProductDetails(null)
             });

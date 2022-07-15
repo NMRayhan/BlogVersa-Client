@@ -65,7 +65,7 @@ const Blog = (props) => {
                         </div>
                     </form>
                 </div>
-                {<Comments blogId={_id} refetch={refetch} />}
+                {<Comments blogId={_id} />}
             </div>
         </article>
     );
