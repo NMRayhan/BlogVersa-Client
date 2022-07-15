@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const DeleteConfirm = ({ blogDetails, setProductDetails }) => {
+const DeleteConfirm = ({ blogDetails, setProductDetails, refetch }) => {
     const { _id, title, details, category } = blogDetails;
     const handleDelete = () => {
         fetch(`http://localhost:5000/deleteBlog/${_id}`, {
@@ -9,9 +9,9 @@ const DeleteConfirm = ({ blogDetails, setProductDetails }) => {
         })
             .then((response) => response.json())
             .then((result) => {
-                setProductDetails(null)
                 toast.success("Your Product Delete Successfully done!");
-                console.log(result);
+                refetch()
+                setProductDetails(null)
             });
     };
     return (

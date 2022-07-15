@@ -62,7 +62,7 @@ const PostBlog = () => {
                 <div>
                     <div className='form-control mt-4'>
                         <label className='label'>
-                            <span class="label-text">User Email</span>
+                            <span className="label-text">User Email</span>
                         </label>
                         <input type="email" name="blogEmail" className='input input-success focus:outline-none' readOnly value={user?.email} />
                     </div>
@@ -74,10 +74,10 @@ const PostBlog = () => {
                     </div>
                     <div className='grid gap-5 grid-cols-3 justify-center items-center'>
                         <div className='form-control mt-4'>
-                            <select name="category" class="select select-info w-full max-w-3xl focus:outline-none">
+                            <select name="category" className="select select-info w-full max-w-3xl focus:outline-none">
                                 <option disabled selected>Select Category</option>
                                 {
-                                    categorys.map((category, index) => <option index={index} value={category.name}>{category.name}</option>)
+                                    categorys.map((category) => <option key={category._id} value={category.name}>{category.name}</option>)
                                 }
                             </select>
                         </div>

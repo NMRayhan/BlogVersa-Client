@@ -15,6 +15,7 @@ const ManageBlogs = () => {
     const {
         isLoading,
         error2,
+        refetch,
         data
     } = useQuery('repoData', () =>
         fetch(`http://localhost:5000/userBlogs/${user?.email}`, {
@@ -60,6 +61,7 @@ const ManageBlogs = () => {
                     <DeleteConfirm
                         blogDetails={productDetails}
                         key={productDetails._id}
+                        refetch={refetch}
                         setProductDetails={setProductDetails}
                     />
                 )}
@@ -67,6 +69,7 @@ const ManageBlogs = () => {
                     <UpdateBlog
                         blogDetails={productDetails}
                         key={productDetails._id}
+                        refetch={refetch}
                         setProductDetails={setProductDetails}
                     />
                 )}
