@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BlogRow = ({ blogDetails, index, setProductDetails, refetch }) => {
+const BlogRow = ({ blogDetails, index, setProductDetails }) => {
     const { _id, title, details, category } = blogDetails;
     return (
         <tr className="hover">

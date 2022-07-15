@@ -24,10 +24,10 @@ const Login = () => {
 
     if (user) {
         navigate(from, { replace: true });
-      }
+    }
 
     if (loading) {
-        return <Spinner/>
+        return <Spinner />
     }
 
     if (error) {

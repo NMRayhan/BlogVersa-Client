@@ -4,6 +4,7 @@ import Spinner from './Spinner/Spinner';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Comments from './Comments';
+import { useQuery, refetch } from 'react-query';
 
 const Blog = (props) => {
     const { _id, title, details, category, img } = props.details
@@ -14,7 +15,8 @@ const Blog = (props) => {
         const commentorEmail = user?.email;
         const commentorName = user?.displayName;
         const blogId = _id;
-        const comment = { commentText, commentorEmail, commentorName, blogId }
+        const BlogTitle = title;
+        const comment = { commentText, commentorEmail, commentorName, blogId, BlogTitle }
         const url = `http://localhost:5000/postComment`
         if (user !== null) {
             fetch(url, {
@@ -38,36 +40,32 @@ const Blog = (props) => {
         toast.error(error.message)
     }
     return (
-        <article className="card lg:card-side w-full bg-base-100 shadow-2xl my-5">
-            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-center items-center'>
-                <figure><img src={img} alt={title} className="w-full" /></figure>
-                <div className="card-body">
-                    <div>
-                        <div className='flex flex-row'>
-                            <h2 className="text-2xl font-medium text-teal-400 text-left basis-9/12">
-                                {title}
-                            </h2>
-                            <div className='basis-3/12'>
-                                <div className="badge badge-secondary">{category}</div>
-                            </div>
+        <article className="card w-full bg-base-100 shadow-2xl my-5">
+            <figure><img src={img} alt={title} /></figure>
+            <div className="card-body">
+                <div>
+                    <div className='flex flex-row'>
+                        <h2 className="text-2xl font-medium text-teal-400 text-left basis-9/12">
+                            {title}
+                        </h2>
+                        <div className='basis-3/12'>
+                            <div className="badge badge-secondary">{category}</div>
                         </div>
-                        <p className='text-left'>{details}</p>
                     </div>
-                    <div className='grid gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 justify-center items-center'>
-                        <button className="btn btn-ghost gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                            Like
-                        </button>
-                        <form onSubmit={handleSubmitComment}>
-                            <div className='grid grid-cols-1 justify-center items-center'>
-                                <textarea placeholder="Comment here" name="comment" rows="1" className='textarea textarea-success focus:outline-0 w-full max-w-full my-2'>
-                                </textarea>
-                                <input type='submit' value="submit" className='btn btn-sm btn-outline btn-success' />
-                            </div>
-                        </form>
-                    </div>
-                    {<Comments blogId={_id} />}
+                    <p className='text-left'>{
+                        details
+                    }</p>
                 </div>
+                <div className='grid gap-2 grid-cols-1 justify-center items-center'>
+                    <form onSubmit={handleSubmitComment}>
+                        <div className='grid grid-cols-1 justify-center items-center'>
+                            <textarea placeholder="Comment here" name="comment" rows="1" className='textarea textarea-success focus:outline-0 w-full max-w-full my-2'>
+                            </textarea>
+                            <input type='submit' value="submit" className='btn btn-sm btn-outline btn-success' />
+                        </div>
+                    </form>
+                </div>
+                {<Comments blogId={_id} refetch={refetch} />}
             </div>
         </article>
     );

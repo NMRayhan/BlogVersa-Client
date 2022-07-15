@@ -11,7 +11,7 @@ const Comments = (props) => {
         }).then(res => res.json()).then(data => setUserComments(data))
     }, [_id])
     return (
-        <div>
+        <div className='overflow-y-scroll max-h-72'>
             {
                 userComments.map(comment => <Comment commentDetails={comment} key={comment._id} />)
             }
