@@ -3,15 +3,32 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Spinner from './Spinner/Spinner';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Comments from './Comments';
 
 const Blog = (props) => {
-    const { id, title, details, category, img } = props.details
+    const { _id, title, details, category, img } = props.details
     const [user, loading, error] = useAuthState(auth);
     const handleSubmitComment = (e) => {
         e.preventDefault()
         const commentText = e.target.comment.value;
-        console.log(commentText);
-        e.target.reset();
+        const commentorEmail = user?.email;
+        const commentorName = user?.displayName;
+        const blogId = _id;
+        const comment = { commentText, commentorEmail, commentorName, blogId }
+        const url = `http://localhost:5000/postComment`
+        if (user !== null) {
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify(comment),
+            }).then(res => res.json()).then(data => console.log(data))
+            e.target.reset();
+        } else {
+            toast.warning("Write a comment please login first!!!")
+            e.target.reset();
+        }
     }
     if (loading) {
         return <Spinner />
@@ -49,6 +66,7 @@ const Blog = (props) => {
                             </div>
                         </form>
                     </div>
+                    {<Comments blogId={_id} />}
                 </div>
             </div>
         </article>
