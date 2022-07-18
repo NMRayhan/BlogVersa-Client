@@ -48,3 +48,10 @@ this Project We can implement Some of this Functional Requirement.
 
 ### Some of UI Screen Short
 ![Home Page](https://i.ibb.co/JjkHWKx/Home-page.png)
+![Login Page](https://i.ibb.co/gTbzVQY/Login-Page.png)
+![Registration Page](https://i.ibb.co/869qj3L/Registration-Page.png)
+![Update Modal](https://i.ibb.co/Tk3VTBq/Update-Modal-Page.png)
+![Delete Confirm Modal](https://i.ibb.co/p4NGnVD/Dalete-Confirm-Modal.png)
+![Blog Share Page](https://i.ibb.co/0mdDL3S/Post-Blog-Page.png)
+![Manage Comment page](https://i.ibb.co/KKXThSc/Manage-Comment-Page.png)
+![Manage Blog Page](https://i.ibb.co/KbC7GTH/Manage-Blog-Page.png)
