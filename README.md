@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# BlogVersa Blogin Web site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Project Created With MERN(MongoDB, ExpressJS, ReactJS, NodeJS) Stack Developement
 
-## Available Scripts
+## Blog [Live site Link](https://blogversaa.firebaseapp.com/).
 
 In the project directory, you can run:
 
