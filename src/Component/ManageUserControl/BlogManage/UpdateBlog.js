@@ -10,7 +10,7 @@ const UpdateBlog = ({ blogDetails, setProductDetails, refetch }) => {
     const [user, loading, error] = useAuthState(auth)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/category`, {
+        fetch(`https://obscure-fjord-00550.herokuapp.com/category`, {
             method: "GET"
         })
             .then(res => res.json())
@@ -18,7 +18,7 @@ const UpdateBlog = ({ blogDetails, setProductDetails, refetch }) => {
     }, [])
 
     useEffect(() => {
-        const url = `http://localhost:5000/blog/update/${_id}`
+        const url = `https://obscure-fjord-00550.herokuapp.com/blog/update/${_id}`
         fetch(url, {
             method: "GET"
         }).then(res => res.json()).then(data => setNewBlogdetails(data))
@@ -61,7 +61,7 @@ const UpdateBlog = ({ blogDetails, setProductDetails, refetch }) => {
                         title, details, category, blogEmail, img
                     };
                     // console.log(blog);
-                    fetch(`http://localhost:5000/updateBlog/${_id}`, {
+                    fetch(`https://obscure-fjord-00550.herokuapp.com/updateBlog/${_id}`, {
                         method: "PUT",
                         headers: {
                             "content-type": "application/json",

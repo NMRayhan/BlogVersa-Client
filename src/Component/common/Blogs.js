@@ -5,7 +5,7 @@ const Blogs = () => {
     
     const [userBlogs, setUserBlogs] = useState([])
     useEffect(() => {
-        const url = `http://localhost:5000/allBlogs`
+        const url = `https://obscure-fjord-00550.herokuapp.com/allBlogs`
         fetch(url)
             .then(res => res.json())
             .then(data => setUserBlogs(data))

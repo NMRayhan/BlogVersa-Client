@@ -3,7 +3,7 @@ import React from 'react';
 const DeleteConfirm = ({ blogDetails, setProductDetails, refetch }) => {
     const { _id} = blogDetails;
     const handleDelete = () => {
-        const url = `http://localhost:5000/deleteBlog/${_id}`
+        const url = `https://obscure-fjord-00550.herokuapp.com/deleteBlog/${_id}`
         fetch(url, {
             method: "DELETE",
         })

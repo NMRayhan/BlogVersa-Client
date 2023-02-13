@@ -10,7 +10,7 @@ import DeleteCommentConfirm from './DeleteCommentConfirm';
 const ManageComment = () => {
     const [user, loading, error] = useAuthState(auth);
     const [commentDetails, setCommentDetails] = useState(null);
-    const url = `http://localhost:5000/commentbyUser/${user?.email}`
+    const url = `https://obscure-fjord-00550.herokuapp.com/commentbyUser/${user?.email}`
     const {
         isLoading,
         error2,

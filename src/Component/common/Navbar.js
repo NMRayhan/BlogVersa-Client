@@ -16,6 +16,7 @@ const Navbar = () => {
     if (loading) {
         return <Spinner />
     }
+    
     if (error) {
         toast.error(error.message)
     }
@@ -48,7 +49,6 @@ const Navbar = () => {
                                 </ul>
                             </div>)
                         }
-
                     </div>
                 </div>
             </div>

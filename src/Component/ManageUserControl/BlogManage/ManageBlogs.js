@@ -18,7 +18,7 @@ const ManageBlogs = () => {
         refetch,
         data
     } = useQuery('repoData', () =>
-        fetch(`http://localhost:5000/userBlogs/${user?.email}`, {
+        fetch(`https://obscure-fjord-00550.herokuapp.com/userBlogs/${user?.email}`, {
             method: "GET"
         }).then(res =>
             res.json()

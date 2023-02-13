@@ -7,7 +7,7 @@ const PostBlog = () => {
     const [categorys, setCategory] = useState([])
     const [user, loading, error] = useAuthState(auth)
     useEffect(() => {
-        fetch(`http://localhost:5000/category`, {
+        fetch(`https://obscure-fjord-00550.herokuapp.com/category`, {
             method: "GET"
         })
             .then(res => res.json())
@@ -39,7 +39,7 @@ const PostBlog = () => {
                         title, details, category, blogEmail, img
                     };
                     console.log(blog);
-                    fetch("http://localhost:5000/addBlog", {
+                    fetch("https://obscure-fjord-00550.herokuapp.com/addBlog", {
                         method: "POST",
                         headers: {
                             "content-type": "application/json",

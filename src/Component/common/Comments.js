@@ -5,7 +5,7 @@ const Comments = (props) => {
     const _id = props.blogId;
     const [userComments, setUserComments] = useState([])
     useEffect(() => {
-        const url = `http://localhost:5000/comments/${_id}`
+        const url = `https://obscure-fjord-00550.herokuapp.com/comments/${_id}`
         fetch(url, {
             method: "GET"
         }).then(res => res.json()).then(data => setUserComments(data))

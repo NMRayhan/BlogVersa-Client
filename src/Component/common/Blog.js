@@ -17,7 +17,7 @@ const Blog = (props) => {
         const blogId = _id;
         const BlogTitle = title;
         const comment = { commentText, commentorEmail, commentorName, blogId, BlogTitle }
-        const url = `http://localhost:5000/postComment`
+        const url = `https://obscure-fjord-00550.herokuapp.com/postComment`
         if (user !== null) {
             fetch(url, {
                 method: "POST",
@@ -41,7 +41,7 @@ const Blog = (props) => {
     }
     return (
         <article className="card w-full bg-base-100 shadow-2xl my-5">
-            <figure><img src={img} alt={title} /></figure>
+            <figure><img src={img} alt={title} className="w-full h-96" /></figure>
             <div className="card-body">
                 <div>
                     <div className='flex flex-row'>

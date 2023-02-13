@@ -4,7 +4,7 @@ const DeleteCommentConfirm = ({ commentDetails, refetch, setCommentDetails }) =>
     const { _id } = commentDetails;
     const handleDelete = (e) => {
         e.preventDefault();
-        const url = `http://localhost:5000/deleteComment/${_id}`
+        const url = `https://obscure-fjord-00550.herokuapp.com/deleteComment/${_id}`
         fetch(url, {
             method: "DELETE"
         })
